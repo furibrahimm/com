@@ -1,0 +1,157 @@
+/* Variabel Warna untuk Kustomisasi Mudah */
+:root {
+  --bg-color: #1a1a1a;
+  --card-bg-color: rgba(45, 45, 45, 0.5);
+  --primary-text-color: #f0f0f0;
+  --secondary-text-color: #b3b3b3;
+  --accent-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg-color);
+  background-image: radial-gradient(
+    circle at top left,
+    #3a3a3a,
+    var(--bg-color) 40%
+  );
+  color: var(--primary-text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Mencegah scroll yang tidak perlu */
+}
+
+/* Container untuk efek perspektif 3D */
+.card-container {
+  perspective: 1000px;
+}
+
+/* Kartu Utama dengan Efek Kaca */
+.card {
+  width: 350px;
+  padding: 30px;
+  background: var(--card-bg-color);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px var(--shadow-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Untuk Safari */
+  text-align: center;
+  transform-style: preserve-3d; /* Penting untuk efek 3D */
+  transition: transform 0.1s ease-out;
+
+  /* Animasi saat halaman dimuat */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-header {
+  animation: fadeInElement 0.8s 0.5s ease forwards;
+  opacity: 0;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color);
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .profile-pic {
+  transform: scale(1.05);
+}
+
+.username {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.bio {
+  font-size: 0.95rem;
+  color: var(--secondary-text-color);
+  margin-top: 5px;
+}
+
+.dm-info {
+  font-size: 0.9rem;
+  color: var(--primary-text-color);
+  font-weight: 300;
+  margin: 15px 0 25px 0;
+}
+
+/* Tombol Link dengan Animasi */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-text-color);
+  padding: 15px;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 400;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  transform: translateZ(20px); /* Memberi kedalaman pada tombol */
+
+  /* Animasi untuk setiap tombol */
+  opacity: 0;
+  animation: fadeInElement 0.5s ease forwards;
+}
+
+/* Delay animasi agar tombol muncul satu per satu */
+.link-button:nth-child(1) {
+  animation-delay: 0.8s;
+}
+.link-button:nth-child(2) {
+  animation-delay: 1s;
+}
+.link-button:nth-child(3) {
+  animation-delay: 1.2s;
+}
+.link-button:nth-child(4) {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeInElement {
+  to {
+    opacity: 1;
+  }
+}
+
+.link-button:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  transform: translateY(-5px) translateZ(20px); /* Efek mengangkat saat hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.link-button:active {
+  transform: translateY(-2px) translateZ(20px); /* Efek ditekan */
+}
